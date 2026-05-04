@@ -137,8 +137,46 @@
     .final-cta h2 { max-width: 800px; margin: 0 auto 18px; }
     .final-cta p { max-width: 640px; margin: 0 auto 28px; color: rgba(255,248,239,.74); font-size: 18px; }
     .final-cta .btn-primary { background: #fff1d7; color: #5b2417; box-shadow: 0 18px 40px rgba(255,241,215,.16); }
-    footer { padding: 28px 0; background: #24110c; color: rgba(255,248,239,.58); font-size: 14px; }
+    footer { padding: 28px 0 96px; background: #24110c; color: rgba(255,248,239,.58); font-size: 14px; }
     .footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+
+    .sticky-cta {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 80;
+      width: min(520px, calc(100% - 28px));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 14px 12px 18px;
+      border-radius: 999px;
+      background: rgba(91,36,23,.94);
+      color: #fff8ef;
+      box-shadow: 0 18px 44px rgba(91,36,23,.32);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255,241,215,.18);
+    }
+    .sticky-cta-text { display: grid; gap: 1px; }
+    .sticky-cta-text strong { font-size: 14px; line-height: 1.1; }
+    .sticky-cta-text span { font-size: 12px; color: rgba(255,248,239,.72); font-weight: 700; }
+    .sticky-cta-button {
+      flex: 0 0 auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      background: #fff1d7;
+      color: #5b2417;
+      font-size: 14px;
+      font-weight: 950;
+      box-shadow: 0 10px 24px rgba(0,0,0,.12);
+      white-space: nowrap;
+    }
+    .sticky-cta-button:hover { transform: translateY(-1px); }
 
     @media (max-width: 900px) {
       .nav-links { display: none; }
@@ -147,16 +185,16 @@
       .hero-card { transform: none; }
       .floating-badge { right: 10px; }
     }
-    @media (max-width: 620px) {
-      .container { width: min(100% - 24px, 1120px); }
-      .hero { padding-top: 46px; }
-      .hero-actions { align-items: stretch; }
-      .btn-primary, .btn-secondary { width: 100%; }
-      .stats-grid, .inside-grid, .categories-grid, .faq-grid { grid-template-columns: 1fr; }
-      .offer-card { padding: 22px; border-radius: 28px; }
-      .price { font-size: 54px; }
-      .floating-badge { position: static; margin: -20px 18px 0 auto; width: max-content; transform: none; }
-      section { padding: 68px 0; }
+    @media (max-width: 620px) {$1
+      .sticky-cta {
+        bottom: 12px;
+        width: calc(100% - 20px);
+        padding: 10px 10px 10px 14px;
+        gap: 8px;
+      }
+      .sticky-cta-text strong { font-size: 13px; }
+      .sticky-cta-text span { font-size: 11px; }
+      .sticky-cta-button { padding: 10px 13px; font-size: 13px; }
     }
   </style>
 </head>
@@ -306,6 +344,13 @@
         <span>Uses 3 optimized images: cake-hero.png, cake-preview-main.png, cake-preview-side.png.</span>
       </div>
     </footer>
+  </div>
+  <div class="sticky-cta" aria-label="Sticky checkout button">
+    <div class="sticky-cta-text">
+      <strong>500+ Cake Recipes PDF</strong>
+      <span>Instant access today — $7</span>
+    </div>
+    <a class="sticky-cta-button" href="https://payhip.com/buy?link=ASYKL">Get PDF Now</a>
   </div>
 </body>
 </html>
