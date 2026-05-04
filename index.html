@@ -63,13 +63,14 @@
     .trust-row { display: flex; flex-wrap: wrap; gap: 14px; color: #6b4a38; font-size: 14px; font-weight: 850; }
 
     .hero-visual { position: relative; }
-    .hero-card {
+    .image-card {
       border-radius: 34px; background: #fff; padding: 14px;
-      box-shadow: 0 34px 80px rgba(91,36,23,.2);
+      box-shadow: 0 34px 80px rgba(91,36,23,.18);
       border: 1px solid rgba(92,48,25,.1);
-      transform: rotate(-1.5deg);
     }
-    .hero-card img { border-radius: 25px; width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+    .image-card img { border-radius: 25px; width: 100%; object-fit: cover; }
+    .hero-card { transform: rotate(-1.5deg); }
+    .hero-card img { aspect-ratio: 4 / 5; }
     .floating-badge {
       position: absolute; right: -10px; top: 34px; background: #5b2417; color: #fff;
       border-radius: 24px; padding: 18px 20px; box-shadow: 0 18px 42px rgba(91,36,23,.26);
@@ -99,17 +100,13 @@
     .inside-card h3 { font-size: 22px; line-height: 1.12; letter-spacing: -.03em; margin-bottom: 10px; }
     .inside-card p { color: #6b4a38; font-weight: 650; }
 
-    .showcase { background: #2b1710; color: #fff8ef; }
-    .showcase .section-head p { color: rgba(255,248,239,.7); }
-    .showcase-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 20px; align-items: stretch; }
-    .showcase-main, .showcase-side {
-      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
-      border-radius: 32px; overflow: hidden;
-    }
-    .showcase-main img, .showcase-side img { width: 100%; height: 100%; object-fit: cover; }
-    .showcase-main img { min-height: 520px; }
-    .showcase-side { display: grid; grid-template-rows: 1fr 1fr; gap: 0; }
-    .showcase-side img { min-height: 250px; }
+    .feature-split { background: #2b1710; color: #fff8ef; }
+    .feature-split .section-head p { color: rgba(255,248,239,.72); }
+    .split-grid { display: grid; grid-template-columns: .92fr 1.08fr; gap: 34px; align-items: center; }
+    .split-image img { aspect-ratio: 4 / 5; }
+    .feature-list { list-style: none; display: grid; gap: 14px; margin-top: 24px; }
+    .feature-list li { display: flex; gap: 12px; align-items: flex-start; color: rgba(255,248,239,.82); font-weight: 750; }
+    .feature-list li::before { content: "✓"; flex: 0 0 28px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: #fff1d7; color: #5b2417; font-weight: 950; }
 
     .categories-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
     .cat {
@@ -129,8 +126,7 @@
     .offer-list { list-style: none; display: grid; gap: 12px; margin: 18px 0 28px; }
     .offer-list li { display: flex; gap: 10px; align-items: flex-start; font-weight: 850; color: #3b2419; }
     .offer-list li::before { content: "✓"; color: #9b4a24; font-weight: 950; }
-    .mini-preview { border-radius: 26px; overflow: hidden; background: #f8ead7; }
-    .mini-preview img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; }
+    .offer-image img { aspect-ratio: 4 / 5; }
 
     .faq-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
     .faq { background: #fff; border: 1px solid rgba(92,48,25,.1); border-radius: 24px; padding: 24px; }
@@ -146,7 +142,7 @@
 
     @media (max-width: 900px) {
       .nav-links { display: none; }
-      .hero-grid, .showcase-grid, .offer-card { grid-template-columns: 1fr; }
+      .hero-grid, .split-grid, .offer-card { grid-template-columns: 1fr; }
       .stats-grid, .inside-grid, .categories-grid, .faq-grid { grid-template-columns: 1fr 1fr; }
       .hero-card { transform: none; }
       .floating-badge { right: 10px; }
@@ -157,11 +153,10 @@
       .hero-actions { align-items: stretch; }
       .btn-primary, .btn-secondary { width: 100%; }
       .stats-grid, .inside-grid, .categories-grid, .faq-grid { grid-template-columns: 1fr; }
-      .showcase-main img { min-height: 340px; }
-      .showcase-side img { min-height: 220px; }
       .offer-card { padding: 22px; border-radius: 28px; }
       .price { font-size: 54px; }
       .floating-badge { position: static; margin: -20px 18px 0 auto; width: max-content; transform: none; }
+      section { padding: 68px 0; }
     }
   </style>
 </head>
@@ -172,7 +167,7 @@
         <a class="brand" href="#top"><span class="brand-mark">🍰</span><span>Tasty Bites Hub</span></a>
         <div class="nav-links">
           <a href="#inside">Inside</a>
-          <a href="#preview">Preview</a>
+          <a href="#categories">Categories</a>
           <a href="#offer">Price</a>
           <a class="nav-cta" href="https://payhip.com/buy?link=ASYKL">Get the PDF</a>
         </div>
@@ -197,8 +192,7 @@
         </div>
 
         <div class="hero-visual">
-          <!-- Upload your chosen image to GitHub and name it: cake-hero.png -->
-          <div class="hero-card"><img src="cake-hero.png" alt="500 cake recipes collection preview"></div>
+          <div class="image-card hero-card"><img src="cake-hero.png" alt="Tasty Bites Hub cake recipe collection preview"></div>
           <div class="floating-badge"><strong>500+</strong><span>cake recipes</span></div>
         </div>
       </div>
@@ -228,27 +222,23 @@
       </div>
     </section>
 
-    <section class="showcase" id="preview">
-      <div class="container">
-        <div class="section-head">
-          <div class="label">Visual preview</div>
-          <h2>Use only a few strong images to make the page feel premium.</h2>
-          <p>This landing page is designed to use 2–3 professional category visuals, not every uploaded image.</p>
-        </div>
-        <div class="showcase-grid">
-          <!-- Upload your chosen image to GitHub and name it: cake-preview-main.png -->
-          <div class="showcase-main"><img src="cake-preview-main.png" alt="Cake recipe category visual"></div>
-          <div class="showcase-side">
-            <!-- Upload your chosen image to GitHub and name it: cake-preview-side.png -->
-            <img src="cake-preview-side.png" alt="Cake recipe category visual">
-            <!-- Upload your chosen image to GitHub and name it: cake-preview-extra.png -->
-            <img src="cake-preview-extra.png" alt="Cake recipe category visual">
-          </div>
+    <section class="feature-split">
+      <div class="container split-grid">
+        <div class="image-card split-image"><img src="cake-preview-main.png" alt="Premium cake category preview"></div>
+        <div>
+          <div class="label">Why buyers love it</div>
+          <h2>Stop wondering what to bake next.</h2>
+          <p style="color:rgba(255,248,239,.72);font-size:18px;">This collection gives buyers a ready-to-use library of cake ideas for everyday baking, family moments, birthdays, holidays, celebrations, and content inspiration.</p>
+          <ul class="feature-list">
+            <li>Quickly find cake ideas by category instead of searching online for hours.</li>
+            <li>Explore beginner-friendly recipes with ingredients, toppings, and method steps.</li>
+            <li>Use it as a baking inspiration library for home, parties, and special occasions.</li>
+          </ul>
         </div>
       </div>
     </section>
 
-    <section>
+    <section id="categories">
       <div class="container">
         <div class="section-head">
           <div class="label">Categories included</div>
@@ -283,10 +273,7 @@
           </ul>
           <a class="btn-primary" href="https://payhip.com/buy?link=ASYKL">Download Now for $7</a>
         </div>
-        <div class="mini-preview">
-          <!-- Upload your chosen image to GitHub and name it: cake-offer.png -->
-          <img src="cake-offer.png" alt="Tasty Bites Hub cake recipes PDF offer image">
-        </div>
+        <div class="image-card offer-image"><img src="cake-preview-side.png" alt="Cake recipe PDF offer preview"></div>
       </div>
     </section>
 
@@ -316,7 +303,7 @@
     <footer>
       <div class="container footer-inner">
         <span>© Tasty Bites Hub. Digital recipe product.</span>
-        <span>Upload 2–3 chosen images to GitHub using the filenames shown in the HTML comments.</span>
+        <span>Uses 3 optimized images: cake-hero.png, cake-preview-main.png, cake-preview-side.png.</span>
       </div>
     </footer>
   </div>
